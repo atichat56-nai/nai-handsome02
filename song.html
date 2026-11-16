@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY MUSIC PLAYLIST</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #10111b;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #30205b, #111827);
+}
+
+header h1 {
+    font-size: 38px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #c5c5d5;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.filters button {
+    border: 1px solid #6754a5;
+    background: #242238;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filters button:hover,
+.filters button.active {
+    background: #7654d8;
+    transform: translateY(-3px);
+}
+
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #202130;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px #0008;
+}
+
+.cover {
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 65px;
+}
+
+.pop { background: linear-gradient(135deg,#e86ba8,#7556cf); }
+.rock { background: linear-gradient(135deg,#e45b43,#521b30); }
+.indie { background: linear-gradient(135deg,#268f8a,#233d64); }
+.hiphop { background: linear-gradient(135deg,#e4a13b,#8d3d32); }
+
+.card-info {
+    padding: 17px;
+}
+
+.card-info h3 {
+    margin: 0 0 8px;
+}
+
+.card-info p {
+    color: #c0c0ce;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.category {
+    display: inline-block;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #51427b;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #202130;
+    color: #aaa;
+    margin-top: 30px;
+}
+
+.card.hide {
+    display: none;
+}
+
+@media(max-width:600px) {
+    header h1 {
+        font-size: 27px;
+    }
+
+    .music-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .cover {
+        height: 125px;
+        font-size: 45px;
+    }
+
+    .card-info {
+        padding: 12px;
+    }
+
+    .card-info h3 {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎵 MY MUSIC PLAYLIST</h1>
+    <p>เว็บไซต์แนะนำเพลงที่น่าฟัง เลือกเพลงในสไตล์ที่คุณชอบ</p>
+</header>
+
+<div class="container">
+
+    <h2>เลือกหมวดหมู่เพลง</h2>
+
+    <div class="filters">
+        <button class="active" onclick="filterMusic('all',this)">ทั้งหมด</button>
+        <button onclick="filterMusic('pop',this)">POP</button>
+        <button onclick="filterMusic('rock',this)">ROCK</button>
+        <button onclick="filterMusic('indie',this)">INDIE</button>
+        <button onclick="filterMusic('hiphop',this)">HIP-HOP</button>
+    </div>
+
+    <h2>🎧 เพลงแนะนำ</h2>
+
+    <div class="music-grid">
+
+        <!-- POP -->
+        <div class="card" data-category="pop">
+            <div class="cover pop">🎵</div>
+            <div class="card-info">
+                <h3>ถ้าเราเจอกันอีก</h3>
+                <p>ศิลปิน: Tilly Birds</p>
+                <p>เพลงป๊อปฟังสบาย ความหมายดี</p>
+                <span class="category">POP</span>
+            </div>
+        </div>
+
+        <div class="card" data-category="pop">
+            <div class="cover pop">🎤</div>
+            <div class="card-info">
+                <h3>เพื่อนเล่น ไม่เล่นเพื่อน</h3>
+                <p>ศิลปิน: Tilly Birds feat. MILLI</p>
+                <p>เพลงป๊อปจังหวะสนุก</p>
+                <span class="category">POP</span>
+            </div>
+        </div>
+
+        <!-- ROCK -->
+        <div class="card" data-category="rock">
+            <div class="cover rock">🎸</div>
+            <div class="card-info">
+                <h3>แสงสุดท้าย</h3>
+                <p>ศิลปิน: Bodyslam</p>
+                <p>เพลงร็อกที่ให้กำลังใจ</p>
+                <span class="category">ROCK</span>
+            </div>
+        </div>
+
+        <div class="card" data-category="rock">
+            <div class="cover rock">⚡</div>
+            <div class="card-info">
+                <h3>ความเชื่อ</h3>
+                <p>ศิลปิน: Bodyslam</p>
+                <p>เพลงร็อกที่มีพลังและความหมาย</p>
+                <span class="category">ROCK</span>
+            </div>
+        </div>
+
+        <!-- INDIE -->
+        <div class="card" data-category="indie">
+            <div class="cover indie">🌙</div>
+            <div class="card-info">
+                <h3>ลาลาลอย</h3>
+                <p>ศิลปิน: The TOYS</p>
+                <p>เพลงฟังเพลิน สไตล์อินดี้</p>
+                <span class="category">INDIE</span>
+            </div>
+        </div>
+
+        <div class="card" data-category="indie">
+            <div class="cover indie">✨</div>
+            <div class="card-info">
+                <h3>ก่อนฤดูฝน</h3>
+                <p>ศิลปิน: The TOYS</p>
+                <p>เพลงบรรยากาศดี มีเอกลักษณ์</p>
+                <span class="category">INDIE</span>
+            </div>
+        </div>
+
+        <!-- HIP-HOP -->
+        <div class="card" data-category="hiphop">
+            <div class="cover hiphop">🎧</div>
+            <div class="card-info">
+                <h3>ธารารัตน์</h3>
+                <p>ศิลปิน: YOUNGOHM</p>
+                <p>เพลงฮิปฮอปฟังสนุก</p>
+                <span class="category">HIP-HOP</span>
+            </div>
+        </div>
+
+        <div class="card" data-category="hiphop">
+            <div class="cover hiphop">🔥</div>
+            <div class="card-info">
+                <h3>พักก่อน</h3>
+                <p>ศิลปิน: MILLI</p>
+                <p>เพลงแร็ปจังหวะสนุก มีเอกลักษณ์</p>
+                <span class="category">HIP-HOP</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>MY MUSIC PLAYLIST</p>
+    <p>เว็บไซต์แนะนำเพลง | จัดทำโดยนักเรียนแผนกเทคโนโลยีสารสนเทศ</p>
+</footer>
+
+<script>
+
+function filterMusic(category, button) {
+
+    const cards = document.querySelectorAll('.card');
+    const buttons = document.querySelectorAll('.filters button');
+
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    cards.forEach(card => {
+
+        if (category === 'all' ||
+            card.dataset.category === category) {
+
+            card.classList.remove('hide');
+
+        } else {
+
+            card.classList.add('hide');
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
